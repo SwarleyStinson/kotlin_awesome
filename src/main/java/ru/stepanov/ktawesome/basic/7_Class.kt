@@ -1,5 +1,6 @@
 package ru.stepanov.ktawesome.basic
 
+//final by default
 class Customer
 
 data class Contact(

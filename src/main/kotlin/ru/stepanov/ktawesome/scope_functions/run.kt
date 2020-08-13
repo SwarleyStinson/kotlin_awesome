@@ -5,13 +5,13 @@ package ru.stepanov.ktawesome.scope_functions
  */
 fun main() {
     fun getNullableLength(ns: String?) {
-        println("for \"$ns\":")
+        println("FOR \"$ns\":")
         val run = ns?.run {                                                  // 1
             println("\tis empty? " + isEmpty())                    // 2
             println("\tlength = $length")
             length                                                 // 3
         }
-        println("run: $run \n***********")
+        println("RUN: $run \n\"$ns\"\n***********")
     }
 
     getNullableLength(null)

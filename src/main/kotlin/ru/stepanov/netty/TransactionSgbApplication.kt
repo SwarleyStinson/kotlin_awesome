@@ -1,4 +1,4 @@
-package ru.nspk.tpp.transaction.sgb
+package ru.stepanov.netty
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan

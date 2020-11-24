@@ -1,4 +1,4 @@
-package ru.nspk.tpp.transaction.sgb.service.netty
+package ru.stepanov.netty.service.netty
 
 import io.netty.bootstrap.Bootstrap
 import io.netty.channel.ChannelFuture
@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel
 import io.netty.handler.ssl.ClientAuth
 import io.netty.handler.ssl.JdkSslContext
 import org.springframework.stereotype.Service
-import ru.nspk.tpp.transaction.sgb.config.SslConfig
+import ru.stepanov.netty.config.SslConfig
 
 @Service
 class NettyClient {

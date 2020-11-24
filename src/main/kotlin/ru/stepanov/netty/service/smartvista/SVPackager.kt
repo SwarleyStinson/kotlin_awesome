@@ -1,4 +1,4 @@
-package ru.nspk.tpp.transaction.sgb.service.smartvista
+package ru.stepanov.netty.service.smartvista
 
 import org.jpos.iso.IFA_AMOUNT
 import org.jpos.iso.IFA_BINARY

@@ -1,10 +1,10 @@
-package ru.nspk.tpp.transaction.sgb.service.netty
+package ru.stepanov.netty.service.netty
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
 import org.jpos.iso.ISOMsg
-import ru.nspk.tpp.transaction.sgb.service.smartvista.SVPackager
+import ru.stepanov.netty.service.smartvista.SVPackager
 
 
 class ResponseDecoder : ReplayingDecoder<ISOMsg?>() {

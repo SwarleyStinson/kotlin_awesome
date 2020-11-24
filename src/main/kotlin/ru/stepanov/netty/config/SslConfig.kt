@@ -1,4 +1,4 @@
-package ru.nspk.tpp.transaction.sgb.config
+package ru.stepanov.netty.config
 
 import io.netty.channel.ChannelOption.CONNECT_TIMEOUT_MILLIS
 import io.netty.handler.ssl.PemX509Certificate

@@ -1,10 +1,10 @@
-package ru.nspk.tpp.transaction.sgb.service.netty
+package ru.stepanov.netty.service.netty
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 import org.jpos.iso.ISOMsg
 import org.springframework.stereotype.Service
-import ru.nspk.tpp.transaction.sgb.service.smartvista.SVPackager
+import ru.stepanov.netty.service.smartvista.SVPackager
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter

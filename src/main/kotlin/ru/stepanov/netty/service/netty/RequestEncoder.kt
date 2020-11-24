@@ -1,4 +1,4 @@
-package ru.nspk.tpp.transaction.sgb.service.netty
+package ru.stepanov.netty.service.netty
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext

@@ -21,13 +21,16 @@ fun basic() {
 }
 
 fun play() {
-    GlobalScope.launch {
-        var count = 0
-        while (count++ < 3) {
-            delay(1000L)
-            println("корутина1 (поток: ${Thread.currentThread().name}): $count")
+    val thread1 = Thread {
+        GlobalScope.launch {
+            var count = 0
+            while (count++ < 10) {
+                delay(1000L)
+                println("корутина1 (поток: ${Thread.currentThread().name}): $count")
+            }
         }
     }
+
     GlobalScope.launch {
         var count = 0
         while (count++ < 3) {
@@ -35,7 +38,12 @@ fun play() {
             println("корутина2 (поток: ${Thread.currentThread().name}): $count")
         }
     }
+    thread1.start()
+
     println("Начинаем считать вслух! (поток: ${Thread.currentThread().name})")
     Thread.sleep(4000L) // основной поток засыпает, но корутины в фоне продолжают работать
+    thread1.join()
+    println("жив ли поток, запустивший корутину1: ${thread1.isAlive}") //нет, но корутина продолжает работать
+    Thread.sleep(4000L)
     println("Спасибо! Закончили! (поток: ${Thread.currentThread().name})")
 }

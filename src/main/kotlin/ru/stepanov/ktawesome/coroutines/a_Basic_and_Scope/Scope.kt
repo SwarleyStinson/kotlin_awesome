@@ -1,4 +1,4 @@
-package ru.stepanov.ktawesome.coroutines
+package ru.stepanov.ktawesome.coroutines.a_Basic_and_Scope
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

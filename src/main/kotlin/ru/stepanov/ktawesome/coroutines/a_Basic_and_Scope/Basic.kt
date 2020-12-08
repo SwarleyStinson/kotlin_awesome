@@ -1,4 +1,4 @@
-package ru.stepanov.ktawesome.coroutines
+package ru.stepanov.ktawesome.coroutines.a_Basic_and_Scope
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -22,11 +22,12 @@ fun basic() {
 
 fun play() {
     val thread1 = Thread {
+        println("(поток: ${Thread.currentThread().name}): запускаю корутину1 !!")
         GlobalScope.launch {
             var count = 0
             while (count++ < 10) {
                 delay(1000L)
-                println("корутина1 (поток: ${Thread.currentThread().name}): $count")
+                println("(поток: ${Thread.currentThread().name}): корутина1 - $count")
             }
         }
     }
@@ -35,15 +36,15 @@ fun play() {
         var count = 0
         while (count++ < 3) {
             delay(1000L)
-            println("корутина2 (поток: ${Thread.currentThread().name}): $count")
+            println("(поток: ${Thread.currentThread().name}): корутина2 - $count")
         }
     }
     thread1.start()
 
-    println("Начинаем считать вслух! (поток: ${Thread.currentThread().name})")
-    Thread.sleep(4000L) // основной поток засыпает, но корутины в фоне продолжают работать
+    println("(поток: ${Thread.currentThread().name}): Начинаем считать вслух! ")
+    Thread.sleep(3000L) // основной поток засыпает, но корутины в фоне продолжают работать
     thread1.join()
-    println("жив ли поток, запустивший корутину1: ${thread1.isAlive}") //нет, но корутина продолжает работать
-    Thread.sleep(4000L)
-    println("Спасибо! Закончили! (поток: ${Thread.currentThread().name})")
+    println("жив ли ${thread1.name}: ${thread1.isAlive} - ${thread1.state}") //нет, но корутина продолжает работать
+    Thread.sleep(3000L)
+    println("(поток: ${Thread.currentThread().name}): Спасибо! Закончили!")
 }

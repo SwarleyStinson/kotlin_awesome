@@ -10,18 +10,18 @@ fun main() = runBlocking {
     coroutineScope {
         repeat(100_000) {
             launch {
-                delay(5000L)
+                delay(2_000L)
                 print(".")
             }
         }
     }
 
     println("\nПусть 100_000 потоков напечатают по двоеточию!")
-    repeat(100_000) {
-        Thread {
-            Thread.sleep(1000)
-            print(":")
-        }.run()
+    for (i in 0..100_000) {
+        if (i % 1_000 == 0) {
+            println(Runtime.getRuntime().freeMemory())
+        }
+        Thread { Thread.sleep(60_000) }.start()
     }
 
 

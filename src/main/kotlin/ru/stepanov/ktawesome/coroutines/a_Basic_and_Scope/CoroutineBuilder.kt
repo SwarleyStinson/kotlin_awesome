@@ -17,6 +17,7 @@ suspend fun main() {
 
     val deferred: Deferred<Unit> = GlobalScope.async { /* light-weight future. Promise to provide a result later */ }
     deferred.await()
+    deferred.isActive
     deferred.cancel()
 
     /** CoroutineScope

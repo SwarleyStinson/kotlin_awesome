@@ -1,17 +1,15 @@
 package ru.stepanov.ktawesome.coroutines.b_Cancellation_and_Timeouts
 
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
 /** Code is sequential by default */
 fun main() {
     print("sequential: ").also { calculateSequential() }
     print("async: ").also { calculateAsync() }
-    print("async LAZY WITH explicit start() invoking: ").also { calculateAsyncLazy(true) }
-    print("async LAZY WITHOUT explicit start() invoking: ").also { calculateAsyncLazy(false) }
+//    print("async LAZY WITHOUT explicit start() invoking: ").also { calculateAsyncLazy(false) }
+//    print("async LAZY WITH explicit start() invoking: ").also { calculateAsyncLazy(true) }
+    Thread.sleep(4_000L)
 }
 
 fun calculateSequential() {
@@ -26,10 +24,17 @@ fun calculateSequential() {
 }
 
 fun calculateAsync() {
-    runBlocking {
+    GlobalScope.launch {
         val time = measureTimeMillis {
-            val one = async { doSomethingUsefulOne() }
-            val two = async { doSomethingUsefulTwo() }
+            println("calculateAsync - ${Thread.currentThread().name}")
+            val one = async {
+                println("one - ${Thread.currentThread().name}")
+                doSomethingUsefulOne()
+            }
+            val two = async {
+                println("two - ${Thread.currentThread().name}")
+                doSomethingUsefulTwo()
+            }
             print("${one.await() + two.await()} ")
         }
         println("Completed in $time ms")
@@ -52,11 +57,13 @@ fun calculateAsyncLazy(startExplicit: Boolean) {
 }
 
 suspend fun doSomethingUsefulOne(): Int {
-    delay(1000L)
+//    delay(1000L)
+    Thread.sleep(1000L)
     return 13
 }
 
 suspend fun doSomethingUsefulTwo(): Int {
-    delay(1000L)
+//    delay(1000L)
+    Thread.sleep(1000L)
     return 29
 }

@@ -14,11 +14,13 @@ suspend fun main() {
     val job: Job = GlobalScope.launch { }
     job.isActive
     job.cancel()
+    job.join()
 
     val deferred: Deferred<Unit> = GlobalScope.async { /* light-weight future. Promise to provide a result later */ }
     deferred.await()
     deferred.isActive
     deferred.cancel()
+    deferred.join()
 
     /** CoroutineScope
     coroutine lifetime is limited

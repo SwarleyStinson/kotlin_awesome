@@ -17,9 +17,9 @@ fun main() = runBlocking {
         var i = 0
 
         /** Good practice */
-//        while (isActive) {
+        while (isActive) {
         /** Bad practice. computation loop, just wastes CPU */
-        while (i < 5) {
+//        while (i < 5) {
 
             if (System.currentTimeMillis() >= nextPrintTime) {
                 println("job: I'm sleeping ${i++} ...")
@@ -31,4 +31,9 @@ fun main() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin()
     println("main: Now I can quit.")
+
+
+    withContext(NonCancellable) {
+
+    }
 }

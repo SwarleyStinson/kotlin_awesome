@@ -8,10 +8,13 @@ class Scope
 
 fun main() {
 
-    runBlocking { //todo implicit .join()  -> дождеться завершения всех созданных корутин, и только после продолжит выполнение
+    runBlocking { //todo implicit .join()  ->
+        /** todo дождеться завершения всех созданных корутин, и только после продолжит выполнение
+         *                            только если они не GlobalScope !!!
+         */
         launch {
             delay(2_000L)
-            println(", World! ${Thread.currentThread().name}")
+            println(", World!")
         }
         print("Hello")
     }

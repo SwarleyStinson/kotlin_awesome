@@ -125,8 +125,8 @@ open class SslConfig {
         var tcpClient = TcpClient.create()
                 .option(CONNECT_TIMEOUT_MILLIS, 60000)
                 .doOnConnected { connection: Connection ->
-                    connection.addHandlerLast(ReadTimeoutHandler(60000, TimeUnit.MILLISECONDS))
-                    connection.addHandlerLast(WriteTimeoutHandler(60000, TimeUnit.MILLISECONDS))
+//                    connection.addHandlerLast(ReadTimeoutHandler(60000, TimeUnit.MILLISECONDS))
+//                    connection.addHandlerLast(WriteTimeoutHandler(60000, TimeUnit.MILLISECONDS))
                 }
 //                .proxy { spec: ProxyProvider.TypeSpec ->
         /* dev version */

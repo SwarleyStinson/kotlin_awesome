@@ -1,15 +1,22 @@
 package ru.stepanov.ktawesome.coroutines.a_Basic_and_Scope
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class Basic
 
 fun main(args: Array<String>) {
 //    basic()
-    play()
+//    play()
+    println("before")
+    runBlocking {
+        withTimeout(3_000){
+            while(true){
+                print(".")
+                Thread.sleep(1_000)
+            }
+        }
+    }
+    println("after")
 }
 
 fun basic() {

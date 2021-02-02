@@ -1,6 +1,7 @@
 package ru.stepanov.reactive.theory
 
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 fun main() {
 
@@ -9,9 +10,8 @@ fun main() {
                 if (t == 3) Flux.empty<Int>()
                 else Flux.just(t)
             }
-            .switchIfEmpty { i ->
-                println("switch if")
-            }
+            .doOnNext { s -> println("do on next for [$s]") }
+            .switchIfEmpty(Mono.just(44))
             .map { s -> "[$s]" }
             .subscribe { s -> println(s) }
 
@@ -19,4 +19,12 @@ fun main() {
             .doOnNext { s -> println(s) }
             .switchIfEmpty { println("Empty") }
             .subscribe()
+
+    getMonoEmpty()
+            .doOnNext { s -> println(s) }
+            .switchIfEmpty(Mono.just(33))
+            .map { s -> "[$s]" }
+            .subscribe { s -> println(s) }
+
+
 }

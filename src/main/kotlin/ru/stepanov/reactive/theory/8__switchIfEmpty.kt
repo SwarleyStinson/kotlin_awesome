@@ -28,8 +28,7 @@ fun main() {
                 println("захожу в switchIfEmpty, но по pipeline дальше НЕ ИДУ!")
                 Flux.just(12)
             }
-            .map { s -> "[$s]" }
-            .map { s -> "выполняю операции: $s" }
+            .map { s -> "операция не будет выполнена [$s]" }
             .subscribe { s -> println(s) }
 
     println("\nMono:")
@@ -40,6 +39,7 @@ fun main() {
                 println("захожу в switchIfEmpty и ИДУ по pipeline дальше!!!")
                 Mono.just(44)
             }
+            .map { s -> "первое преобразование $s" }
             .map { s -> "[$s]" }
             .subscribe { s -> println(s) }
 }

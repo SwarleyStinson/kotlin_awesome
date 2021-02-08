@@ -5,7 +5,6 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.core.publisher.SynchronousSink
 import java.time.Duration
-import java.util.*
 
 fun main() {
     val list = mutableListOf<Int>()
@@ -21,7 +20,20 @@ fun main() {
     val monoFromFlux2 = flux.elementAt(3)
 
     Flux.range(1, 5).subscribe { s -> println(s) }
-    Flux.fromIterable(Arrays.asList(1, 2, 3)).subscribe { s -> println(s) }
+
+    println("***")
+    Mono.fromCallable { listOf<Int>(12, 13) }
+            .flatMap { Mono.just(listOf<Int>()) }
+//            .switchIfEmpty(Mono.fromCallable {
+//                println("зашли в switchIfEmpty")
+//                55
+//            })
+            .switchIfEmpty(Mono.just(listOf(55)))
+            .subscribe { s -> println(s) }
+
+    Flux.just(listOf<Int>())
+            .switchIfEmpty { println("зашли в switchIfEmpty") }
+            .subscribe { s -> println(s) }
 
     Flux
             .generate<String> { sink -> sink.next("Hello") }

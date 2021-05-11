@@ -28,14 +28,13 @@ fun main() {
 //                        Flux.just(tuple.t1 + tuple.t2)
 //                    }
                     .flatMap { (extRes_1, extRes_2) ->
-                        println("${extRes_1} + ${extRes_2}")
+                        print("${extRes_1} + ${extRes_2} = ")
                         Flux.just(extRes_1 + extRes_2)
                     }
-
     publisher.subscribe { s -> println(s) }
 
     println("[${Thread.currentThread().name}] поток пошел дальше")
-    Thread.sleep(3_000)
+    Thread.sleep(4_000)
 }
 
 

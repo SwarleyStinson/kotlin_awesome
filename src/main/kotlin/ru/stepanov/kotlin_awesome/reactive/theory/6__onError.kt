@@ -18,7 +18,7 @@ fun main() {
             .subscribe { s -> println(s) }
 
     /** onErrorResume() - продолжает выполнение цепочки */
-    Flux.just("key1", "key2", "key3")
+    Flux.just("key1", "key2", "key3", "key4")
             .flatMap { req ->
                 callExternalService(req)
                         .map { res -> "wrapped [$res]" }
@@ -32,6 +32,7 @@ fun main() {
                                 else -> getFromCache(req)
                             }
                         }
+                        .switchIfEmpty(Mono.just("was empty"))
                         .map { s -> "$s + after error" }
                         .onErrorResume { err -> Mono.just("finish error handler") }
             }
@@ -42,6 +43,7 @@ fun callExternalService(req: String) =
         when (req) {
             "key2" -> Mono.error<String>(RuntimeException("Some gonna wrong..."))
             "key3" -> Mono.error<String>(RuntimeException("Unknown req"))
+            "key4" -> Mono.empty()
             else -> Mono.just("value from external for $req")
         }
 

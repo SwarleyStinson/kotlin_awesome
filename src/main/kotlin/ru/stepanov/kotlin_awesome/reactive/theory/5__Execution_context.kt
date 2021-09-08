@@ -24,7 +24,7 @@ fun main() {
 
     /** subscribeOn() */
     val producer2 = Flux.range(1, 3)
-            .map { i -> "'${10 + i} [" + Thread.currentThread().name + "]'" }
+            .map { i -> "'${20 + i} [" + Thread.currentThread().name + "]'" }
             .subscribeOn(s)
             .map { i -> "Value $i from thread: [" + Thread.currentThread().name + "]" }
 

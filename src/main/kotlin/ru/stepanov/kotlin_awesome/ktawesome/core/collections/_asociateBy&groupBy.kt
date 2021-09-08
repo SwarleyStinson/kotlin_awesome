@@ -7,7 +7,8 @@ fun main() {
             Person("John", "Boston", "1-888"),
             Person("Sarah", "Munich", "49-777"),
             Person("Petr", "SpB", "7-456"),
-            Person("Tunchik", "SpB", "7-123"))
+            Person("Tunchik", "SpB", "7-123")
+    )
 
     val phoneBook = people.associateBy { it.phone }
     println(phoneBook)

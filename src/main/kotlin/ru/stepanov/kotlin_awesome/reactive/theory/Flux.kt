@@ -10,7 +10,7 @@ fun main() {
             Flux.empty<Int>()
                     .switchIfEmpty(Flux.error<Int>(RuntimeException("bla bla")))
                     .switchIfEmpty {
-                        println("зашли в switchIfEmpty")
+                        println("зашли во второй switchIfEmpty")
                         Flux.error<Int>(RuntimeException("bla bla"))
                     }
                     .collectList()
@@ -24,7 +24,4 @@ fun main() {
             .block()
 
     println("after")
-    //commit 33
-    //commit 44
-
 }

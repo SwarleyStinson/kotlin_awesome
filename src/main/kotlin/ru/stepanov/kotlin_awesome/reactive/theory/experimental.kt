@@ -4,18 +4,17 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 fun main() {
-
     val producer =
-            Flux.empty<String>()
+            Flux.just("Hello, World!")
                     .flatMap {
-                        println("зашли во flatMap")
-                        Flux.just("stroka")
+                        printText("первый - $it")
+                        printText("второй - $it")
                     }
-                    .switchIfEmpty(Flux.error<String>(RuntimeException("bla")))
-                    .collectList()
-                    .switchIfEmpty(Mono.error<List<String>>(RuntimeException("bla")))
-                    .onErrorResume { Mono.just(listOf("после ошибки")) }
 
     producer.subscribe { s -> println(s) }
-    Thread.sleep(2_000)
 }
+
+fun printText(text: String): Mono<String> =
+        Mono.just(text).doOnNext {
+            println("зашли в метод со значением - $text")
+        }

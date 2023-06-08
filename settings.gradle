@@ -1,0 +1,9 @@
+pluginManagement {
+    def user = System.getProperty("gradle.wrapperUser")
+    def pwd = System.getProperty("gradle.wrapperPassword")
+
+    repositories << repositories.mavenLocal()
+    repositories << repositories.mavenCentral()
+}
+
+rootProject.name = "kotlin_awesome"

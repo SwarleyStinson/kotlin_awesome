@@ -1,0 +1,80 @@
+plugins {
+    id "org.springframework.boot" version "$springBootPluginVersion"
+    id "io.spring.dependency-management" version "$springDependencyManagementVersion"
+
+    id "org.jetbrains.kotlin.jvm" version "$kotlinPluginVersion"
+    id "org.jetbrains.kotlin.kapt" version "$kotlinPluginVersion"
+    id "org.jetbrains.kotlin.plugin.spring" version "$kotlinPluginVersion"
+    id "org.jetbrains.kotlin.plugin.noarg" version "$kotlinPluginVersion"
+    id "org.jetbrains.kotlin.plugin.jpa" version "$kotlinPluginVersion"
+}
+
+group = 'ru.raiffeisen.rb'
+version = '1.1'
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+springBoot {
+    buildInfo()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+allprojects {
+    repositories << repositories.mavenLocal()
+    repositories << repositories.mavenCentral()
+}
+
+dependencies {
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
+
+    // Reactive
+    implementation "io.netty:netty-all:4.1.51.Final"
+    implementation "io.projectreactor:reactor-core:3.3.9.RELEASE"
+    implementation "io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.2"
+    implementation "io.projectreactor.netty:reactor-netty:0.9.11.RELEASE"
+
+    // Spring
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+
+    // Kafka
+    implementation "org.springframework.kafka:spring-kafka"
+
+    // DB
+    implementation "org.postgresql:postgresql"
+
+    // Metrics
+    implementation "io.micrometer:micrometer-core"
+    implementation "io.micrometer:micrometer-registry-prometheus"
+
+    // Other
+    implementation "com.github.ben-manes.caffeine:caffeine"
+    implementation "org.jpos:jpos:2.1.4"
+    implementation "org.bouncycastle:bcpkix-jdk15on:1.66"
+    implementation "commons-io:commons-io:2.7"
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit'
+        exclude group: 'org.junit.vintage'
+    }
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+    testImplementation "org.apache.commons:commons-lang3"
+}
+
+//    implementation "com.google.guava:guava"
+//    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin"
+//implementation("org.apache.commons:commons-lang3:3.11")
+//implementation("org.apache.maven.plugins:maven-compiler-plugin:3.8.1")

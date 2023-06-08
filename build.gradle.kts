@@ -1,12 +1,28 @@
+group = "ru.stepanov"
+version = "1.0-SNAPSHOT"
+description = "kotlin_awesome"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
 plugins {
     java
     `maven-publish`
+    "org.jetbrains.kotlin.jvm"
+//    "org.jetbrains.kotlin.kapt"
+//    "org.jetbrains.kotlin.plugin.spring"
+//    "org.jetbrains.kotlin.plugin.noarg"
+//    "org.jetbrains.kotlin.plugin.jpa"
 }
 
 repositories {
     mavenLocal()
     maven {
         url = uri("https://repo.maven.apache.org/maven2/")
+    }
+}
+
+publishing {
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
     }
 }
 
@@ -25,15 +41,4 @@ dependencies {
     implementation("org.springframework:spring-web:5.2.3.RELEASE")
     implementation("org.apache.maven.plugins:maven-compiler-plugin:3.8.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.4.30")
-}
-
-group = "ru.stepanov"
-version = "1.0-SNAPSHOT"
-description = "kotlin_awesome"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
-    }
 }
